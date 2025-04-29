@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация для HPP и WHP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #4CAF50;
+        }
+
+        code {
+            background-color: #e0e0e0;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Документация для языка программирования HPP и WHP</h1>
+
+    <h2>Введение</h2>
+    <p>HPP (Hardware Performance Programming) — это интерпретируемый язык программирования, предназначенный для создания консольных приложений. WHP (Web Hardware Programming) — это расширение HPP для веб-разработки, которое позволяет создавать статические веб-страницы. Оба языка предлагают мощные команды для работы с переменными, математическими операциями, условиями и многим другим.</p>
+
+    <h3>Использование файлов</h3>
+    <ul>
+        <li>Файлы для консольных приложений должны иметь расширение <code>.hpp</code>.</li>
+        <li>Файлы для веб-разработки должны иметь расширение <code>.whp</code>.</li>
+        <li>Чтобы сделать исполняемый файл из <code>.hpp</code>, нужно написать в консоли <code>hppinstaller &lt;полный путь к папке с файлом&gt; &lt;имя файла.vvm&gt;</code>, тогда скрипт создаст папку, которая важна для работы программы, и исполняемый батник, который будет запускать скрипт на ОС, на которой может быть не установлен HPP (важно, чтобы файл и батник были в одной директории).</li>
+    </ul>
+
+    <h2>Команды для консольного приложения (HPP)</h2>
+    <h3>Базовые команды</h3>
+    <pre><code>
+str &lt;имя&gt; = &lt;значение&gt;: объявляет переменную и присваивает значение.
+Пример:
+str a = Hello!
+int b = 5
+
+System.ReadLine() / System.ReadInt(): считывает ввод пользователя.
+Пример:
+System.out.print Enter your name:
+str name = System.ReadLine()
+
+System.out.print &lt;сообщение&gt;: выводит сообщение в консоль. Также выводит значение переменных
+Пример:
+str b = Hello!
+System.out.print %a%</code></pre>
+
+    <h3>Функции</h3>
+    <pre><code>
+func &lt;имя_функции&gt;() { &lt;команда&gt; }: создает функцию с командой
+call_fn &lt;имя_функции&gt;(): вызывает функцию
+^ : делит команды на строки в функции
+Пример:
+func print() { System.out.print %a% ^ System.out.print var a printed }
+str a = hello
+call_fn print()</code></pre>
+
+    <h3>Условия</h3>
+    <pre><code>
+if &lt;переменная&gt; == &lt;переменная&gt; : &lt;команда&gt;: выполняет команду, если условие истинно.
+Пример:
+if %a% == %b% : System.out.print a equal %b%
+
+if &lt;переменная&gt; != &lt;переменная&gt; : &lt;команда&gt;: выполняет команду, если условие ложно.
+Пример:
+if %b% != %a% : System.out.print b not equal %a%
+
+if &lt;переменная&gt; > &lt;переменная&gt; : &lt;команда&gt;: выполняет команду, если переменная больше указанного значения.
+Пример:
+int a = 70
+if %score% > %a% : System.out.print You passed!
+</code></pre>
+
+    <h3>Математические операции</h3>
+    <pre><code>
+System.calc &lt;значение1&gt; &lt;операция&gt; &lt;значение2&gt;: выполняет математическую операцию с переменными и сохраняет результат в специальной переменной int со значением #res#.
+Пример:
+System.calc %x% + %y%
+int c = #res#
+System.out.print %c%
+</code></pre>
+
+    <h2>Команды для веб-разработки (WHP)</h2>
+    <h3>Основные команды</h3>
+    <pre><code>&lt;WHP&gt;: указывает начало WHP файла. Каждый файл должен начинаться с этой строки.
+&lt;WHP_END&gt;: указывает конец WHP файла. Каждый файл должен заканчиваться этой строкой.
+
+HTML &lt;контент&gt;: добавляет HTML-контент в тело веб-страницы.
+Пример:
+HTML &lt;h1&gt;Добро пожаловать на мой сайт!&lt;/h1&gt;
+
+CSS &lt;стили&gt;: добавляет стили в веб-страницу.
+Пример:
+CSS body { font-family: Arial, sans-serif; background-color: #f0f0f0; }
+
+JS &lt;скрипт&gt;: добавляет JavaScript код на веб-страницу.
+Пример:
+JS console.log(Страница загружена.);
+</code></pre>
+
+    <h3>Пример WHP файла</h3>
+    <pre><code>&lt;WHP&gt;
+HTML &lt;h1&gt;Добро пожаловать на мой сайт!&lt;/h1&gt;
+CSS body { font-family: Arial, sans-serif; background-color: #f0f0f0; }
+JS console.log(Страница загружена.);
+PRINT Привет, мир!
+&lt;WHP_END&gt;</code></pre>
+
+    <h2>Заключение</h2>
+    <p>Эта документация охватывает основные команды и конструкции, доступные в языках HPP и WHP. Вы можете использовать эти команды для создания как консольных приложений, так и веб-страниц. Надеемся, что она окажется для вас полезной при изучении и разработке на HPP и WHP.</p>
+    <a href="https://github.com/toikaz/HPP-programming-language/tree/main" download>Скачать Hardware Performance Programming</a>
+</body>
+
+</html>
